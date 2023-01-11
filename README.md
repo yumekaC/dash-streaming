@@ -13,13 +13,12 @@ Create Apache server on sever machine.
 Copy the published IP address (*) of the server. 
 
 ### In client side
-[Details in Japanese](https://github.com/kanai1192/sensor_works/blob/main/chujo_code/HoloLens_code/how_to_PointCloudStreaming.txt)1~6
 
 In new Unity scene, create Resources folder in Assets folder and create new Material named MyDefault(.mat) in Resources folder.
 
 Change to Shader: Point Cloud/Point in Inspector panel of MyDefault.mat.
 
-Create Scripts folder in Assets folder. In Assets folder, create new two scripts named XXXX(.cs) and MyClass(.cs), and then replace code with the github code XXXX.cs and [MyClass.cs](https://github.com/kanai1192/sensor_works/blob/main/chujo_code/HoloLens_code/MyClass.cs). In XXXX.cs, change IP address to the copied IP address (*).
+Create Scripts folder in Assets folder. In Assets folder, create new two scripts named XXXX(.cs) and MyClass(.cs), and then replace code with the github code XXXX.cs and [MyClass.cs](https://github.com/yumekaC/dash-streaming/blob/main/source_code/Client/MyClass.cs). In XXXX.cs, change IP address to the copied IP address (*).
 
 Create new GameObject in Hierarchy and add code of XXXX.cs by pushing Add Component button in Inspector panel.
 
