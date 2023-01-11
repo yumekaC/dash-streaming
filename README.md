@@ -8,6 +8,11 @@ code for rendering: https://github.com/keijiro/Pcx
 ## Usage
 
 ### In server side
+
+code for G-PCC:
+
+code for PSNR of point cloud objects:
+
 Create Apache server on sever machine.
 
 Copy the published IP address (*) of the server. 
