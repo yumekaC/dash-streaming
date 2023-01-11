@@ -4,11 +4,9 @@ import base64
 content_name='greeting'#'ted'#'spool'#'telecon'#'bear'#'racecar'#'slab_chair'#'greeting'
 dir_name='bitrate'#'PSNR_p2point'#'bitrate'
 for pqs in range(16):
-    in_pc_dir = '/var/www/html/ply_dataset/'
-    in_tar_dir = 'pqs/'+content_name+'/'+dir_name+'/'+str(pqs)+'/bin'#
+    in_tar_dir = content_name+'/'+dir_name+'/'+str(pqs)+'/bin'#
     input_ext = '.bin'
-    out_pc_dir = '/var/www/html/ply_dataset/'
-    out_tar_dir = 'pqs/'+content_name+'/'+dir_name+'/'+str(pqs)+'/bin_seg'#
+    out_tar_dir = content_name+'/'+dir_name+'/'+str(pqs)+'/bin_seg'#
     output_ext = '.seg'
     out_meta_name = 'metadata.json'
 
