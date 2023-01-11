@@ -33,4 +33,5 @@ Play the scene.
 #### III. Emulating Multi point cloud sequences or objects without rendering using quality-driven recipe and control
 [Emulating.cs](https://github.com/yumekaC/dash-streaming/blob/main/source_code/Client/Emulation.cs)
 and [ChangeDistance.cs](https://github.com/yumekaC/dash-streaming/blob/main/source_code/Client/ChangeDistance.cs)
-Moreover, store[distance.csv](https://github.com/yumekaC/dash-streaming/blob/main/source_code/Client/distance.csv) in Assets/StreamingAssets/
+
+Moreover, store [distance.csv](https://github.com/yumekaC/dash-streaming/blob/main/source_code/Client/distance.csv) in Assets/StreamingAssets/
