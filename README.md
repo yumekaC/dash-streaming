@@ -25,13 +25,7 @@ Create new GameObject in Hierarchy and add code of XXXX.cs by pushing Add Compon
 Play the scene.
 
 #### I. Rendering 1 point cloud without streaming
-[Rendering1.cs](https://github.com/kanai1192/sensor_works/blob/main/chujo_code/HoloLens_code/Rendering1.cs)
+[Rendering1.cs](https://github.com/yumekaC/dash-streaming/blob/main/source_code/Client/Rendering1.cs)
 
-#### II. Streaming 1 point cloud sequence with rendering
-[Streaming1.cs](https://github.com/kanai1192/sensor_works/blob/main/chujo_code/HoloLens_code/Streaming1.cs)
-
-#### III. Rendering Multi point cloud sequences or objects without streaming
-[Demo6.cs](https://github.com/kanai1192/sensor_works/blob/main/chujo_code/HoloLens_code/Demo6.cs)
-
-#### IV. Streaming Multi point cloud sequences or objects without rendering
-[CompSegAdap.cs](https://github.com/kanai1192/sensor_works/blob/main/chujo_code/HoloLens_code/CompSegAdap.cs)
+#### II. Streaming Multi point cloud sequences or objects without rendering
+[CompSegAdap.cs](https://github.com/yumekaC/dash-streaming/blob/main/source_code/Client/CompSegAdap.cs)
