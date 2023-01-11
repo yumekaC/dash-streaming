@@ -49,8 +49,8 @@ for pqs in range(16):
             for j in range(fps):
                 frame_num = i*fps + j
                 print ("frame num: {}".format(frame_num))
-                in_frame_path = os.path.join(in_pc_path, str(frame_num) + input_ext)
-                #in_frame_path = os.path.join(in_pc_path, str(0) + input_ext)
+                #in_frame_path = os.path.join(in_pc_path, str(frame_num) + input_ext)
+                in_frame_path = os.path.join(in_pc_path, str(0) + input_ext)
                 with open(in_frame_path, 'rb') as f:
                     bin_pc = f.read()
 
