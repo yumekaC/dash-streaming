@@ -93,8 +93,8 @@ public class Emulation : MonoBehaviour
     }
     double Metaget(string bin_content_name)
     {
-        //string seg_meta_url = "http://133.9.96.57:33110/ply_dataset/pqs/" + bin_content_name + "/bitrate/ave_metadata.json";
-        string seg_meta_url = "http://133.9.96.57:33110/ply_dataset/pqs/" + bin_content_name + "/PSNR_p2point/ave_metadata.json";
+        //string seg_meta_url = "http://XXXX/ply_dataset/pqs/" + bin_content_name + "/bitrate/ave_metadata.json";
+        string seg_meta_url = "http://XXXX/ply_dataset/pqs/" + bin_content_name + "/PSNR_p2point/ave_metadata.json";
 
         float meta_throughput;
         while (true)
@@ -646,8 +646,8 @@ public class Emulation : MonoBehaviour
         int frame_num = content_info_list[content_id].next_frame;
         int loop_frame = frame_num % AveMetadatas[content_id].num_of_seg;
 
-        //string url = "http://133.9.96.57:33110/ply_dataset/pqs/" + content_name + "/bitrate/" + choose_pqs + "/bin_seg/" + loop_frame + ".seg";//change pqs
-        string url = "http://133.9.96.57:33110/ply_dataset/pqs/" + content_name + "/PSNR_p2point/" + choose_pqs + "/bin_seg/" + loop_frame + ".seg";//change pqs
+        //string url = "http://XXXX/ply_dataset/pqs" + content_name + "/bitrate/" + choose_pqs + "/bin_seg/" + loop_frame + ".seg";//change pqs
+        string url = "http://XXXX/ply_dataset/pqs/" + content_name + "/PSNR_p2point/" + choose_pqs + "/bin_seg/" + loop_frame + ".seg";//change pqs
 
         content_info_list[content_id].next_frame++;
         content_info_list[content_id].buffer_count++;
