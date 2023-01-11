@@ -22,9 +22,9 @@ for frame_num in range(FRAME):
         os.system("tmc3 -c "+content_name+"/"+dir_name+"/cfg/"+str(pqs)+"/encoder.cfg --uncompressedDataPath=../../dataset/"+content_name+".ply --compressedStreamPath="+content_name+"/"+dir_name+"/"+str(pqs)+"/bin/"+str(frame_num)+".bin --inputScale="+str(inputScale)+" > "+content_name+"/"+dir_name+"/"+str(pqs)+"/encode_log/"+str(frame_num)+".log")
         #decode
         os.system("tmc3 -c "+content_name+"/"+dir_name+"/ex/"+str(pqs)+"/decoder.cfg --compressedStreamPath="+content_name+"/"+dir_name+"/"+str(pqs)+"/bin/"+str(frame_num)+".bin --reconstructedDataPath="+content_name+"/"+dir_name+"/"+str(pqs)+"/decode_ply/"+str(frame_num)+"_decode.ply --outputBinaryPly=0 --mergeDuplicatedPoints=1 --outputUnitLength="+str(inputScale)+" > "+content_name+"/"+dir_name+"/"+str(pqs)+"/decode_log/"+str(frame_num)+".log")
-        #pcerror
-        #os.system("/home/waseda/sensor_works/geo_dist/build/pc_error -a ../contents/"+content_name+"/ascii_ply/"+str(frame_num)+".ply -b "+content_name+"/"+dir_name+"/"+str(pqs)+"/decode_ply/"+str(frame_num)+"_decode.ply > "+content_name+"/"+dir_name+"/"+str(pqs)+"/pc_error/"+str(frame_num)+".log")
-        os.system("/home/waseda/sensor_works/geo_dist/build/pc_error -a ../contents/"+content_name+".ply -b "+content_name+"/"+dir_name+"/"+str(pqs)+"/decode_ply/"+str(frame_num)+"_decode.ply > "+content_name+"/"+dir_name+"/"+str(pqs)+"/pc_error/"+str(frame_num)+".log")
+        #pcerror#
+        #os.system("./pc_error -a ../contents/"+content_name+"/ascii_ply/"+str(frame_num)+".ply -b "+content_name+"/"+dir_name+"/"+str(pqs)+"/decode_ply/"+str(frame_num)+"_decode.ply > "+content_name+"/"+dir_name+"/"+str(pqs)+"/pc_error/"+str(frame_num)+".log")
+        os.system("./pc_error -a ../contents/"+content_name+".ply -b "+content_name+"/"+dir_name+"/"+str(pqs)+"/decode_ply/"+str(frame_num)+"_decode.ply > "+content_name+"/"+dir_name+"/"+str(pqs)+"/pc_error/"+str(frame_num)+".log")
         #binary
         os.system("cat "+content_name+"/"+dir_name+"/"+str(pqs)+"/decode_ply/"+ str(frame_num) + "_decode.ply | sed s/float/double/ > "+content_name+"/"+dir_name+"/"+str(pqs)+"/decode_ply/"+str(frame_num)+"_double.ply")
         pcd_bi = o3d.io.read_point_cloud(content_name+"/"+dir_name+"/"+str(pqs)+"/decode_ply/"+str(frame_num)+"_double.ply")
