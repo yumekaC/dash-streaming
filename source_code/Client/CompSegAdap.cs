@@ -262,31 +262,6 @@ public class CompSegAdap : MonoBehaviour
             }
         }
     }
-    /*void Choice2(int content_id)
-    {
-        if (as_of_throughput <= AveMetadatas[content_id].ave_bitrate_lists[0].ave_bitrate / 1000000)
-        {
-            content_info_list[content_id].choosed_pqs = AveMetadatas[content_id].ave_bitrate_lists[0].pqs.ToString();
-        }
-        //else if (as_of_throughput >= AveMetadatas[content_id].ave_bitrate_lists[9].ave_bitrate / 1000000)
-        else if (as_of_throughput >= AveMetadatas[content_id].ave_bitrate_lists[4].ave_bitrate / 1000000)
-        {
-            //content_info_list[content_id].choosed_pqs = AveMetadatas[content_id].ave_bitrate_lists[9].pqs.ToString();
-            content_info_list[content_id].choosed_pqs = AveMetadatas[content_id].ave_bitrate_lists[4].pqs.ToString();
-        }
-        else
-        {
-            //for (int j = 0; j < 10; j++)
-            for (int j = 0; j < 5; j++)
-            {
-                if (as_of_throughput <= AveMetadatas[content_id].ave_bitrate_lists[j + 1].ave_bitrate / 1000000 && as_of_throughput > AveMetadatas[content_id].ave_bitrate_lists[j].ave_bitrate / 1000000)
-                {
-                    content_info_list[content_id].choosed_pqs = AveMetadatas[content_id].ave_bitrate_lists[j].pqs.ToString();
-                    break;
-                }
-            }
-        }
-    }*/
 
     void BufferController(int content_id)
     {
@@ -346,7 +321,6 @@ public class CompSegAdap : MonoBehaviour
         if (AveMetadatas[content_id].rate_control == 0)
         {
             Choice(content_id);
-            //Choice2(content_id);
             choose_pqs = content_info_list[content_id].choosed_pqs;
         }
         else
@@ -411,7 +385,6 @@ public class CompSegAdap : MonoBehaviour
             };
             string content = JsonUtility.ToJson(seg_que);
             queues[content_id].Enqueue(content);
-            //queues[content_id].Enqueue(txt);
             System.Threading.Monitor.PulseAll(queues[content_id]); // thread restart
         } // release eclusive lock
 
