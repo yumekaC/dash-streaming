@@ -31,9 +31,6 @@ public class CompSegAdap : MonoBehaviour
     public PositionInfo positionInfo = new PositionInfo();
     public List<ContentInfoModel> content_info_list = new List<ContentInfoModel>();
     public int choose_content = 0;//=>for rendering
-
-    /*contents position on HoloLens*/
-    public List<string[]> posi_list = new List<string[]>();
     public List<int> intervals = new List<int>();
 
     public double as_of_throughput;
@@ -82,21 +79,6 @@ public class CompSegAdap : MonoBehaviour
         contents_name_list.Add(sequence0);
         contents_name_list.Add(sequence1);
 
-        //StreamReader sr = new StreamReader(@"Assets/Resources/holo_posi2.csv");//holo_posi1.csv
-        string address = Path.Combine(Application.streamingAssetsPath, "holo_posi2.csv");
-        StreamReader sr = new StreamReader(address);//for hololens
-        {
-            while (!sr.EndOfStream)
-            {
-                string line = sr.ReadLine();
-                string[] values = line.Split(',');
-                posi_list.Add(values);
-            }
-        }
-        float interval1 = float.Parse(posi_list[1][0]) - float.Parse(posi_list[0][0]);//string to float
-        int interval_sleep1 = (int)interval1 * 1000;
-        float interval2 = float.Parse(posi_list[2][0]) - float.Parse(posi_list[1][0]);//string to float
-        int interval_sleep2 = (int)interval2 * 1000;
         intervals.Add(0);
         intervals.Add(10);//3000
         intervals.Add(10);//3000
@@ -104,8 +86,6 @@ public class CompSegAdap : MonoBehaviour
         intervals.Add(10);//3000
         intervals.Add(10);//3000
         intervals.Add(10);//3000
-        /*intervals.Add(interval_sleep1);
-        intervals.Add(interval_sleep2);*/
         startTime = (DateTimeOffset.Now - baseDt).Ticks;
         //TapHandler();
         for (int i = 0; i < 6; i++)//
@@ -128,8 +108,7 @@ public class CompSegAdap : MonoBehaviour
     }
     double Metaget(string bin_content_name)
     {
-        string seg_meta_url = "http://133.9.96.57:33110/ply_dataset/bin_seg/" + bin_content_name + "/ave_metadata.json";
-        //string seg_meta_url = "http://192.168.2.22:33110/ply_dataset/bin_seg/" + bin_content_name + "/ave_metadata.json";
+        string seg_meta_url = "http://XXXX/ply_dataset/bin_seg/" + bin_content_name + "/ave_metadata.json";
         float meta_throughput;
         while (true)
         {
@@ -144,7 +123,6 @@ public class CompSegAdap : MonoBehaviour
                         StreamReader sr = new StreamReader(st, Encoding.GetEncoding("UTF-8"));
                         string txt = sr.ReadToEnd();
                         //deserialize
-                        //AveSegMetadata aveSegMetadata = JsonUtility.FromJson<AveSegMetadata>(txt);
                         AveMetadata aveMetadata = JsonUtility.FromJson<AveMetadata>(txt);
                         AveMetadatas.Add(aveMetadata);
                         int num_of_seg = aveMetadata.num_of_seg;
@@ -165,11 +143,11 @@ public class CompSegAdap : MonoBehaviour
             {
                 if (ex.Status == WebExceptionStatus.ProtocolError)
                 {
-                    //Debug.Log(ex.Message);
+                    Debug.Log(ex.Message);
                 }
                 else
                 {
-                    //Debug.Log(ex.Message);
+                    Debug.Log(ex.Message);
                 }
             }
 
@@ -191,15 +169,6 @@ public class CompSegAdap : MonoBehaviour
     private void TapHandler()//unity debug
     {
         airtap_count++;
-        /*positionInfo = new PositionInfo //unity debug
-        {
-            x_pos = float.Parse(posi_list[airtap_count - 1][1]),
-            y_pos = float.Parse(posi_list[airtap_count - 1][2]),
-            z_pos = float.Parse(posi_list[airtap_count - 1][3]),
-            x_rot = float.Parse(posi_list[airtap_count - 1][4]),
-            y_rot = float.Parse(posi_list[airtap_count - 1][5]),
-            z_rot = float.Parse(posi_list[airtap_count - 1][6])
-        };*/
         positionInfo = new PositionInfo //unity debug
         {
             x_pos = airtap_count - 1,
@@ -210,15 +179,6 @@ public class CompSegAdap : MonoBehaviour
             z_rot = airtap_count - 1
         };
         double meta_throughput = Metaget(contents_name_list[airtap_count - 1]);
-        /*positionInfo = new PositionInfo
-        {
-            x_pos = Center.x_position,
-            y_pos = Center.y_position,
-            z_pos = Center.z_position,
-            x_rot = Center.x_rotation,
-            y_rot = Center.y_rotation,
-            z_rot = Center.z_rotation
-        };*/
         contentInfoModel = new ContentInfoModel
         {
             id = airtap_count - 1,
@@ -395,12 +355,10 @@ public class CompSegAdap : MonoBehaviour
         }
         int frame_num = content_info_list[content_id].next_frame;
         int loop_frame = frame_num % AveMetadatas[content_id].num_of_seg;
-        string url = "http://133.9.96.57:33110/ply_dataset/bin_seg/" + content_name + "/" + choose_pqs + "/" + loop_frame + ".seg";
-        //string url = "http://192.168.2.22:33110/ply_dataset/bin_seg/" + content_name + "/" + choose_pqs + "/" + loop_frame + ".seg";
+        string url = "http://XXXX/ply_dataset/bin_seg/" + content_name + "/" + choose_pqs + "/" + loop_frame + ".seg";
         content_info_list[content_id].choosed_pqs = choose_pqs;
         content_info_list[content_id].next_frame++;
         content_info_list[content_id].buffer_count++;
-        //if (content_info_list[content_id].next_frame == content_info_list[content_id].num_of_frames - 1)
         if (content_info_list[content_id].next_frame == 170)//50//100
         {
             content_info_list[content_id].download_flag = false;
@@ -427,11 +385,11 @@ public class CompSegAdap : MonoBehaviour
             {
                 if (ex.Status == WebExceptionStatus.ProtocolError)
                 {
-                    //Debug.Log(ex.Message);
+                    Debug.Log(ex.Message);
                 }
                 else
                 {
-                    //Debug.Log(ex.Message);
+                    Debug.Log(ex.Message);
                 }
             }
 
@@ -725,47 +683,6 @@ public class CompSegAdap : MonoBehaviour
             };
             storeDatas3.Add(storedata3);
 
-            /*post database*/
-            DateTime post_date = DateTime.UtcNow;
-            string post_ts = post_date.Year + "-" + post_date.Month + "-" + post_date.Day + "T" + post_date.Hour + ":" + post_date.Minute + ":" + post_date.Second + "." + post_date.Millisecond + "Z";
-            for (int post = 0; post < content_info_list.Count; post++)
-            {
-                if (content_info_list.Count >= (post + 1))
-                {
-                    var post_log = new SegLog
-                    {
-                        timestamp = post_ts,
-                        content_id = post,
-                        buffer_size = queues[post].Count,
-                        throughput = (float)content_info_list[post].as_of_throughput,
-                        pqs = (float)int.Parse(content_info_list[post].choosed_pqs) / 10,
-                        psnr_p2point = (float)AveMetadatas[post].ave_bitrate_lists[int.Parse(content_info_list[post].choosed_pqs) - 1].ave_psnr_p2point,
-                        psnr_p2plane = (float)AveMetadatas[post].ave_bitrate_lists[int.Parse(content_info_list[post].choosed_pqs) - 1].ave_psnr_p2plane
-                    };
-                    var post_data = new DataBaseLog
-                    {
-                        id = 0.ToString(),
-                        type = "log",
-                        timestamp = post_ts,
-                        log = post_log
-                    };
-                    string json = JsonUtility.ToJson(post_data);
-                    byte[] data = Encoding.UTF8.GetBytes(json);
-                    string REST_API = "/logger/v1/put/data";
-                    string url = "http://133.9.96.57:30000/" + REST_API;//IP address on log server
-                    
-                    // create request
-                    WebRequest req = WebRequest.Create(url);
-                    req.Method = "POST";
-                    req.ContentType = "application/json";
-                    req.ContentLength = data.Length;
-
-                    // write down POST data
-                    Stream reqStream = req.GetRequestStream();
-                    reqStream.Write(data, 0, data.Length);
-                    reqStream.Close();
-                }
-            }
             Thread.Sleep(100);//250/550//10*
 
         }
@@ -785,7 +702,6 @@ public class CompSegAdap : MonoBehaviour
             string filename = string.Format(@"all_" + replace2 + "_download_" + log + ".csv");
             Debug.Log(filename);
             string address = Path.Combine(Application.persistentDataPath, filename);
-            //string address = Path.Combine("Assets/", filename);
             Debug.Log(address);
             StreamWriter sw;
             if (!File.Exists(address))
@@ -795,8 +711,6 @@ public class CompSegAdap : MonoBehaviour
                 sw.Dispose();
             }
             sw = new StreamWriter(new FileStream(address, FileMode.Open));
-            //sw.WriteLine("timestamp,unixTime,time,content" + log + ",frame_num,buffer,dl_time,content" + log + ", content_id");
-            //sw.WriteLine("timestamp,unixTime,time,content" + log + ",psnr_p2point,psnr_p2plane,frame_num,buffer,dl_time,content" + log + ", content_id");
             sw.WriteLine("timestamp,unixTime,time,pqs_" + log + ",psnr_p2point_" + log + ",psnr_p2plane_" + log + ",frame_num,buffer,dl_time,Throughput_" + log + ", content_id");
             for (int j = 0; j < storeDatas_list[log].Count; j++)
             {
@@ -814,8 +728,7 @@ public class CompSegAdap : MonoBehaviour
         string replace4 = re4.Replace(replace3, "-", 2);
         string filename2 = string.Format(@"all_" + replace4 + "_buffer.csv");
         Debug.Log(filename2);
-        string address2 = Path.Combine(Application.persistentDataPath, filename2);
-        //string address = Path.Combine("Assets/", filename);
+        string address2 = Path.Combine(Application.persistentDataPath, filename2);        
         Debug.Log(address2);
         StreamWriter sw2;
         if (!File.Exists(address2))
@@ -825,9 +738,6 @@ public class CompSegAdap : MonoBehaviour
             sw2.Dispose();
         }
         sw2 = new StreamWriter(new FileStream(address2, FileMode.Open));
-        //sw2.WriteLine("timestamp,unixtime,time,content0,content1,content2," + (float)startTime / 10000000 + "," + (float)download_start_list[0] / 10000000 + "," + (float)render_start_list[0] / 10000000);
-        //sw2.WriteLine("timestamp,unixtime,time,content0,content1,content2," + (float)startTime / 10000000 + "," + (float)download_start_list[0] / 10000000 + "," + (float)download_start_list[1] / 10000000 + "," + (float)download_start_list[2] / 10000000 + "," + (float)render_start_list[0] / 10000000 + "," + (float)render_start_list[1] / 10000000 + "," + (float)render_start_list[2] / 10000000);
-        //sw2.WriteLine("timestamp,unixtime,time,content0,content1,content2," + startTime + "," + download_start_list[0] + "," + render_start_list[0]);
         string buffer = "timestamp,unixtime,time";
         if (content_info_list.Count >= 1)
         {
@@ -842,7 +752,6 @@ public class CompSegAdap : MonoBehaviour
                 buffer = buffer + "," + download_start_list[buf].ToString() + "," + render_start_list[buf].ToString();
             }
         }
-        //sw2.WriteLine("timestamp,unixtime,time,content0,content1,content2," + startTime + "," + download_start_list[0] + "," + download_start_list[1] + "," + download_start_list[2] + "," + render_start_list[0] + "," + render_start_list[1] + "," + render_start_list[2]);
         sw2.WriteLine(buffer);
         for (int j = 0; j < storeDatas3.Count; j++)
         {
@@ -854,7 +763,6 @@ public class CompSegAdap : MonoBehaviour
                     buf_data = buf_data + "," + storeDatas3[j].contentResultList[buf].buffer_size;
                 }
             }
-            //sw2.WriteLine(storeDatas2[j].timestamp + "," + storeDatas2[j].unixTime + "," + (float)(storeDatas2[j].unixTime - startTime) /10000000 + "," + storeDatas2[j].contentResultList.contentResult0.buffer_size + "," + storeDatas2[j].contentResultList.contentResult1.buffer_size + "," + storeDatas2[j].contentResultList.contentResult2.buffer_size);
             sw2.WriteLine(buf_data);
         }
         sw2.Flush();
@@ -869,7 +777,6 @@ public class CompSegAdap : MonoBehaviour
         string filename3 = string.Format(@"all_" + replace6 + "_rendering.csv");
         Debug.Log(filename3);
         string address3 = Path.Combine(Application.persistentDataPath, filename3);
-        //string address = Path.Combine("Assets/", filename);
         Debug.Log(address3);
         StreamWriter sw3;
         if (!File.Exists(address3))
