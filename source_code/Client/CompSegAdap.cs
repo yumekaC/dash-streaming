@@ -64,9 +64,8 @@ public class CompSegAdap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string sequence0 = "greeting";//"greeting";
-        string sequence1 = "telecon";//"teleconf3";
-        //string sequence2 = "bear";
+        string sequence1 = "greeting";
+        string sequence2 = "telecon";
         string sequence3 = "slab_chair";
         string sequence4 = "racecar";
         string sequence5 = "ted";
@@ -76,8 +75,8 @@ public class CompSegAdap : MonoBehaviour
         contents_name_list.Add(sequence3);
         contents_name_list.Add(sequence6);
         contents_name_list.Add(sequence5);
-        contents_name_list.Add(sequence0);
         contents_name_list.Add(sequence1);
+        contents_name_list.Add(sequence2);
 
         intervals.Add(0);
         intervals.Add(10);//3000
@@ -87,11 +86,8 @@ public class CompSegAdap : MonoBehaviour
         intervals.Add(10);//3000
         intervals.Add(10);//3000
         startTime = (DateTimeOffset.Now - baseDt).Ticks;
-        //TapHandler();
-        for (int i = 0; i < 6; i++)//
+        for (int i = 0; i < 6; i++)
         {
-            //DateTime dateTime = DateTime.Now;
-            //Debug.Log(dateTime + "x_pos:" + posi_list[i][1]);
             Thread.Sleep(intervals[i]);
             TapHandler();
         }
@@ -100,11 +96,7 @@ public class CompSegAdap : MonoBehaviour
         recognizer.SetRecognizableGestures(GestureSettings.Tap);
         recognizer.Tapped += TapHandler;
         recognizer.StartCapturingGestures();*/
-        /*for (int tap = 0; tap < 3; tap++)//unity debug
-        {
-            TapHandler();
-            Thread.Sleep(3000);
-        }*/
+
     }
     double Metaget(string bin_content_name)
     {
