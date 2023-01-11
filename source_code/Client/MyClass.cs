@@ -468,24 +468,24 @@ public class ContentInfoModel
     public bool download_flag;
     public bool rendering_flag;
     public int next_frame;
-    public double as_of_throughput;//add 
-    public double distance;//add for DistanceQuality.cs
+    public double as_of_throughput;
+    public double distance;
     public string choosed_pqs;
-    public string choosed_percent;//add for DistanceQuality.cs
-    public double bitrate;//add for DistanceQuality.cs
-    public double psnr_p2point;//add for DistanceQuality.cs
-    public double psnr_p2plane;//add for DistanceQuality.cs
-    public double ms_ssim;//add for DistanceQuality.cs
+    public string choosed_percent;
+    public double bitrate;
+    public double psnr_p2point;
+    public double psnr_p2plane;
+    public double ms_ssim;
     public int buffer_count;
-    public int rendering_frame;//add for CompSeqAdap.cs
-    public List<byte[]> deque_data;//add for CompSeqAdap.cs
-    public string rendering_pqs;//add for CompSeqAdap.cs
-    public string rendering_percent;//add for DQ
-    public int rendering_segnum;//add for CompSeqAdap.cs
-    public string rendering_timestamp;//add for CompSeqAdap.cs
-    public long rendering_unixtime;//add for CompSeqAdap.cs
-    public int frame_num_all;//add for CompSeqAdap.cs
-    public bool log_rendring_flag; //add for CompSeqAdap.cs    
+    public int rendering_frame;
+    public List<byte[]> deque_data;
+    public string rendering_pqs;
+    public string rendering_percent;
+    public int rendering_segnum;
+    public string rendering_timestamp;
+    public long rendering_unixtime;
+    public int frame_num_all;
+    public bool log_rendring_flag;    
 }
 [Serializable]
 public class PositionInfo
@@ -521,7 +521,6 @@ public class ContentResult
     public string choose_pqs;
     public int frame_number;
     public int buffer_size;
-    //public double download_time;
     public double throughput;
 }
 /*store log data for rendering*/
@@ -531,7 +530,6 @@ public class StoreData2
     public string timestamp;
     public long unixTime;
     public ContentResultList2 contentResultList;
-    //public double throughput;
     public int all_buffer_size;
 }
 [Serializable]
@@ -545,8 +543,6 @@ public class ContentResultList2
 public class ContentResult2
 {
     public int content_id;
-    //public string choose_pqs;
-    //public int frame_number;
     public int buffer_size;
     public double throughput;
 }
@@ -557,11 +553,11 @@ public class StoreData1
     public long unixTime;
     public int content_id;
     public string choose_pqs;
-    public string choose_percent;//add for DistanceQuality
+    public string choose_percent;
     public double bitrate;
     public double psnr_p2point;
     public double psnr_p2plane;
-    public double ms_ssim;//add for DistanceQuality
+    public double ms_ssim;
     public double distance;
     public int frame_number;
     public int buffer_size;
@@ -611,7 +607,7 @@ public class AveBitrateList
 public class SegQue
 {
     public string pqs;
-    public string percent;//add for DistanceQuality.cs
+    public string percent;
     public string segdata;
 }
 /*rendering Log for CompSeg*/
@@ -624,7 +620,7 @@ public class RenderingLog
     public long delete_unixtime;
     public int content_id;
     public string rendering_pqs;
-    public string rendering_percent;//Add for DQ
+    public string rendering_percent;
     public int seg_num;
     public int frame_num_in_seg;
     public int frame_num_all;
@@ -679,7 +675,7 @@ public class StoreData3
 {
     public string timestamp;
     public long unixTime;
-    public double all_capacity;//add for DistanceQuality.cs
+    public double all_capacity;
     public List<ContentResult2> contentResultList;
 }
 /*rendering time*/
