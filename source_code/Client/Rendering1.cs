@@ -14,14 +14,12 @@ public class Rendering1 : MonoBehaviour
     void Start()
     {
         byte[] wwwdata = null;
-        string url = "http://XXXX/ply_dataset/x.ply";//binary ply
+        string url = "http://XXXX/ply_dataset/x.ply";//binary ply path
         while (true)
         {
             try
             {
-                //DateTime dl_ts = DateTime.UtcNow;
-                //dlts = dl_ts.Year + "-" + dl_ts.Month + "-" + dl_ts.Day + "T" + dl_ts.Hour + ":" + dl_ts.Minute + ":" + dl_ts.Second + "." + dl_ts.Millisecond + "Z";
-                download1 = DateTime.Now;
+               download1 = DateTime.Now;
                 WebRequest req = WebRequest.Create(url);
                 using (WebResponse res = req.GetResponse())
                 {
@@ -40,11 +38,11 @@ public class Rendering1 : MonoBehaviour
             {
                 if (ex.Status == WebExceptionStatus.ProtocolError)
                 {
-                    //Debug.Log(ex.Message);
+                    Debug.Log(ex.Message);
                 }
                 else
                 {
-                    //Debug.Log(ex.Message);
+                    Debug.Log(ex.Message);
                 }
             }
         }
