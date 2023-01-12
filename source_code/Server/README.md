@@ -2,7 +2,7 @@
 
 1. Run python codes in the following order:
 
-  cfg_make.py → processing.py → pack_pc_seg.py → seg_average.py
+    cfg_make.py → processing.py → pack_pc_seg.py → seg_average.py
 
 2. Copy data to published server 
 
