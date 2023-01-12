@@ -21,7 +21,7 @@ Create Apache server on sever machine.
 
 Copy the published IP address (*) of the server.
 
-Make dash representation: Details
+Make dash representation: [Details](https://github.com/yumekaC/dash-streaming/blob/main/source_code/Server/README.md)
 
 ### In client side
 
