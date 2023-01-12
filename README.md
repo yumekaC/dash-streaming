@@ -21,7 +21,7 @@ Create Apache server on sever machine.
 
 Copy the published IP address (*) of the server.
 
-Make dash representation 
+Make dash representation: Details
 
 ### In client side
 
