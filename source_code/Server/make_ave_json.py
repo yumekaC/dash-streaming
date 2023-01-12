@@ -11,7 +11,7 @@ seg_num = 9#1#9#10#5
 max_buffer = 10#10#20#1
 min_buffer = 5#5#5#3
 rate_control = 0#1
-in_metajson_dir = '/var/www/html/ply_dataset/pqs/'+content_name+'/'+dir_name
+in_metajson_dir = '/XXXX/ply_dataset/pqs/'+content_name+'/'+dir_name #published server path
 csv_filename=content_name+"/"+content_name+"_"+dir_name+"_inf.csv"
 curve_filename=content_name+"/"+content_name+"_"+dir_name+"_curve.csv"
 def make_ave_json():
