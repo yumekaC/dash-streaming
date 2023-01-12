@@ -1,6 +1,14 @@
 # How to use Point cloud streaming
 
 ## Requirement
+
+### In server side
+
+code for G-PCC:https://github.com/MPEGGroup/mpeg-pcc-tmc13
+
+code for PSNR of point cloud objects:https://github.com/mauriceqch/geo_dist
+
+### In client side
 Unity version: 2019.4.17f1 (you can use 2021 ver.)
 
 code for rendering: https://github.com/keijiro/Pcx 
@@ -9,13 +17,9 @@ code for rendering: https://github.com/keijiro/Pcx
 
 ### In server side
 
-code for G-PCC:
-
-code for PSNR of point cloud objects:
-
 Create Apache server on sever machine.
 
-Copy the published IP address (*) of the server. 
+Copy the published IP address (*) of the server.
 
 ### In client side
 
